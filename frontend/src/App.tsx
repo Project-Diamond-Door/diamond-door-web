@@ -1,14 +1,4 @@
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
-
-import Home from "./Home/Home";
-import Products from "./Products/Products";
-
 function App() {
   const openMenu = () => {
     document.querySelector(".sidebar")?.classList.add("open");
@@ -19,7 +9,6 @@ function App() {
   };
 
   return (
-  <Router>
     <div className="grid-container">
       <header className="header">
         <div className="brand">
@@ -29,10 +18,9 @@ function App() {
           <a href="/">Diamond Door</a>
         </div>
         <div className="header-links">
-          <Link to="/">Home</Link>
-          <Link to="/catalog">Catalog</Link>
+          <a href="/cart">Cart</a>
+          <a href="/signin">Sign In</a>
         </div>
-
       </header>
 
       <aside className="sidebar">
@@ -49,20 +37,37 @@ function App() {
         </ul>
       </aside>
 
-
-<main className="main">
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/catalog" element={<Products />} />
-  </Routes>
-</main>
+      <main className="main">
+        <div className="content">
+          <ul className="products">
+            {[1, 2, 3].map((item) => (
+              <li className="product" key={item}>
+                <div className="product">
+                  <img
+                    className="product-image"
+                    src="/images/d1.jpg"
+                    alt="Slim Shirt"
+                  />
+                  <div className="product-name">
+                    <a href="/">Slim Shirt</a>
+                  </div>
+                  <div className="product-brand">Nike</div>
+                  <div className="product-price">$60</div>
+                  <div className="product-rating">
+                    4.5 Stars (10 Reviews)
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
 
       <footer className="footer">
         © 2022 Diamond Door
       </footer>
     </div>
-  </Router>
-);
+  );
 }
 
 export default App;
